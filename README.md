@@ -113,7 +113,7 @@ Description:&nbsp;&nbsp;&nbsp;Searches for the PCA9536 at the pre-defined I2C Bu
 3  ... Data send, NACK received  
 4  ... Other error (lost bus arbitration, bus error, etc.)  
 5  ... Timed-out while trying to become Bus Master  
-6  ... Timed-out while waiting for data to be sent
+6  ... Timed-out while waiting for data to be sent  
 \>6 ... Unlisted error (potential future implementation/s)<br>
 
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte  
