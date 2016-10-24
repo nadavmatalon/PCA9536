@@ -120,7 +120,7 @@ Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte
 
 __getMode();__  
 Parameters:&nbsp;&nbsp;&nbsp;IO0 / IO1 / IO2 / IO3  
-Description:&nbsp;&nbsp;Gets the selected pin's current mode (1 = INPUT [default]/ 0 = OUTPUT). For more info, see General Note #1 above.  
+Description:&nbsp;&nbsp;Gets the selected pin's current mode (1 = INPUT [default]/ 0 = OUTPUT) (For more info, see General Note #1 above).  
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte  
 
 __getState();__  
@@ -134,41 +134,41 @@ Description:&nbsp;&nbsp;Gets the selected INPUT pin's current polarity (0 = NON-
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte  
 
 __setMode();__  
-Parameters:&nbsp;&nbsp;&nbsp;To set a single pin: IO0 / IO1 / IO2 / IO3, IO_INPUT / IO_OUTPUT
+Parameters:&nbsp;&nbsp;&nbsp;To set a single pin: IO0 / IO1 / IO2 / IO3, IO_INPUT / IO_OUTPUT  
 &nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all pins at once: IO_INPUT / IO_OUTPUT
 Description:&nbsp;&nbsp;Sets the selected pin's/all pins' mode (INPUT / OUTPUT).  
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 __setState();__  
-Parameters:&nbsp;&nbsp;&nbsp;To set a single OUTPUT pin: IO0 / IO1 / IO2 / IO3, IO_LOW / IO_HIGH
+Parameters:&nbsp;&nbsp;&nbsp;To set a single OUTPUT pin: IO0 / IO1 / IO2 / IO3, IO_LOW / IO_HIGH  
 &nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all OUTPUT pins at once: IO_LOW / IO_HIGH
 Description:&nbsp;&nbsp;Sets the selected pin's/all pins' state (LOW / HIGH). Note that this is relevant only for OUTPUT pins.   
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 __setPolarity();__  
-Parameters:&nbsp;&nbsp;&nbsp;To set a single INPUT pin: IO0 / IO1 / IO2 / IO3, IO_NON_INVERTED / IO_INVERTED
+Parameters:&nbsp;&nbsp;&nbsp;To set a single INPUT pin: IO0 / IO1 / IO2 / IO3, IO_NON_INVERTED / IO_INVERTED  
 &nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all INPUT pins at once: IO_NON_INVERTED / IO_INVERTED  
-Description:&nbsp;&nbsp;Sets the selected pin's/all pins' polarity (NON-INVERTED / INVERTED). Note that this is relevant only for INPUT pins.   
-Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
+Description:&nbsp;&nbsp;Sets the selected pin's/all pins' polarity (NON-INVERTED / INVERTED). Note that this is relevant only for INPUT pins.  
+Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None  
 
 __reset();__  
 Parameters:&nbsp;&nbsp;&nbsp;None  
-Description:&nbsp;&nbsp;&nbsp;Resets all 4 channels of the PCA9536 to their power-up default settings, as follows:
+Description:&nbsp;&nbsp;&nbsp;Resets all 4 channels of the PCA9536 to their power-up default settings, as follows:  
 
 * MODE: INPUT
 * STATE: HIGH
 * POLARITY: NON-INVERTED
 * REGISTRY POINTER: INPUT
 
-Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
+Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None  
 
 __getComResult();__  
 Parameters:&nbsp;&nbsp;&nbsp;None  
 Description:&nbsp;&nbsp;Returns the latest I2C Communication result code (see Success/Error codes above)  
-Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte
+Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte  
 
 __Destructor__  
-If you want to destruct an instantiated PCA9536 object, you can use the following method to do so:
+If you want to destruct an instantiated PCA9536 object, you can use the following method to do so:  
 
 ```
 ~PCA9536 device_name();
