@@ -135,19 +135,19 @@ Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte
 
 __setMode();__  
 Parameters:&nbsp;&nbsp;&nbsp;To set a single pin: IO0 / IO1 / IO2 / IO3, IO_INPUT / IO_OUTPUT  
-&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all pins at once: IO_INPUT / IO_OUTPUT
+;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all pins at once: IO_INPUT / IO_OUTPUT
 Description:&nbsp;&nbsp;Sets the selected pin's/all pins' mode (INPUT / OUTPUT).  
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 __setState();__  
 Parameters:&nbsp;&nbsp;&nbsp;To set a single OUTPUT pin: IO0 / IO1 / IO2 / IO3, IO_LOW / IO_HIGH  
-&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all OUTPUT pins at once: IO_LOW / IO_HIGH
+;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all OUTPUT pins at once: IO_LOW / IO_HIGH
 Description:&nbsp;&nbsp;Sets the selected pin's/all pins' state (LOW / HIGH). Note that this is relevant only for OUTPUT pins.   
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 __setPolarity();__  
 Parameters:&nbsp;&nbsp;&nbsp;To set a single INPUT pin: IO0 / IO1 / IO2 / IO3, IO_NON_INVERTED / IO_INVERTED  
-&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all INPUT pins at once: IO_NON_INVERTED / IO_INVERTED  
+;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbspTo set all INPUT pins at once: IO_NON_INVERTED / IO_INVERTED  
 Description:&nbsp;&nbsp;Sets the selected pin's/all pins' polarity (NON-INVERTED / INVERTED). Note that this is relevant only for INPUT pins.  
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None  
 
