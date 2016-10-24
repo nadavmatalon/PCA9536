@@ -85,7 +85,7 @@ Begin by installing the library either by using the Arduino IDE's Installation W
 Next, include the library at the top of the sketch as follows:
 
 ```
-#include <PCA9536.h>
+#include "PCA9536.h"
 ```
 
 At this point you can construct a new PCA9536 object(s) by using the following command (at the top of the sketch after the 'include' line):
@@ -114,7 +114,7 @@ Description:&nbsp;&nbsp;&nbsp;Searches for the PCA9536 at the pre-defined I2C Bu
 4  ... Other error (lost bus arbitration, bus error, etc.)  
 5  ... Timed-out while trying to become Bus Master  
 6  ... Timed-out while waiting for data to be sent
->6 ... Unlisted error (potential future implementation/s)<br>
+\>6 ... Unlisted error (potential future implementation/s)<br>
 
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte  
 
