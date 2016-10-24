@@ -188,11 +188,11 @@ Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PString
 
 ## RUNNING THE EXAMPLE SKETCH
 
-1) Hook-up the PCA9536 to the Arduino as explained above.
-2) If you like, connect a LED with an appropriate series resistor between the PCA9536's ALERT pin (PIN 3) and ground
-3) Upload the Example Sketch to the Arduino.
-4) Open the Serial Communications Window (make sure the baud-rate is set to 9600).
-5) You should be able to see detailed feedback from running each of the public methods of the library. 
+1) Hook-up the PCA9536 to the Arduino as explained above.  
+2) If you like, connect a LED with an appropriate series resistor between the PCA9536's ALERT pin (PIN 3) and ground  
+3) Upload the Example Sketch to the Arduino.  
+4) Open the Serial Communications Window (make sure the baud-rate is set to 9600).  
+5) You should be able to see detailed feedback from running each of the public methods of the library.  
 
 ## BUG REPORTS
 
