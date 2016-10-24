@@ -1,0 +1,64 @@
+#######################################
+# Syntax Coloring Map For PCA9536
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+PCA9536	KEYWORD1
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+ping	KEYWORD2
+getMode	KEYWORD2
+getState	KEYWORD2
+getPolarity	KEYWORD2
+setMode	KEYWORD2
+setState	KEYWORD2
+setPolarity	KEYWORD2
+reset	KEYWORD2
+getComResult	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+DEV_ADDR	LITERAL1
+NUM_BYTES	LITERAL1
+ALL_INPUT	LITERAL1
+ALL_OUTPUT	LITERAL1
+ALL_LOW	LITERAL1
+ALL_HIGH	LITERAL1
+ALL_NON_INVERTED	LITERAL1
+ALL_INVERTED	LITERAL1
+REG_INPUT	LITERAL1
+REG_OUTPUT	LITERAL1
+REG_POLARITY	LITERAL1
+REG_CONFIG	LITERAL1
+IO0	LITERAL1
+IO1	LITERAL1
+IO2	LITERAL1
+IO3	LITERAL1
+IO_OUTPUT	LITERAL1
+IO_INPUT	LITERAL1
+IO_LOW	LITERAL1
+IO_HIGH	LITERAL1
+IO_NON_INVERTED	LITERAL1
+IO_INVERTED	LITERAL1
+
+#######################################
+# Built-In Variables (LITERAL2)
+#######################################
+
+reg_ptr_t	LITERAL2
+pin_t	LITERAL2
+mode_t	LITERAL2
+state_t	LITERAL2
+polarity_t	LITERAL2

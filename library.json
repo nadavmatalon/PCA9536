@@ -1,0 +1,18 @@
+{
+		"name": "PCA9536",
+		"frameworks": "AVR",
+		"keywords": "PCA9536, GPIO, I2C, 4-BIT",
+		"description": "PCA9536 Driver (4-Channel GPIO I2C Expander)",
+		"url": "https://github.com/nadavmatalon/PCA9536",
+		"downloadUrl": "https://github.com/nadavmatalon/PCA9536/archive/master.zip",
+		"authors":
+		{
+		        "name": "Nadav Matalon",
+		        "maintainer": true
+		},
+		"repository":
+		{
+		    "type": "git",
+		    "url": "https://github.com/NadavMatalon/PCA9536"
+		}
+}
