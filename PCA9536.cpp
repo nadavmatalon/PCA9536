@@ -140,7 +140,7 @@ void PCA9536::toggleState() {
  *==============================================================================================================*/
 
 void PCA9536::setPolarity(pin_t pin, polarity_t newPolarity) {          // PARAMS: IO0 / IO1 / IO2 / IO3
-    setPin(pin, REG_POLARITY, newPolarity);           //         IO_NON_INVERTED / IO_INVERTED
+    setPin(pin, REG_POLARITY, newPolarity);                             //         IO_NON_INVERTED / IO_INVERTED
 }
 
 /*==============================================================================================================*
