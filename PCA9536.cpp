@@ -43,7 +43,7 @@ __asm volatile ("nop");
  *==============================================================================================================*/
 
 PCA9536::PCA9536() {
-    _comBuffer = ping();
+//    _comBuffer = ping();
 }
 
 /*==============================================================================================================*
@@ -195,9 +195,11 @@ byte PCA9536::getPin(pin_t pin, reg_ptr_t regPtr) {
  *==============================================================================================================*/
 
 void PCA9536::setReg(reg_ptr_t regPtr, byte newSetting) {
-    initCall(regPtr);
-    Wire.write(newSetting);
-    endCall();
+    if (regPtr > 0) {
+        initCall(regPtr);
+        Wire.write(newSetting);
+        endCall();
+    }
 }
 
 /*==============================================================================================================*
@@ -205,7 +207,9 @@ void PCA9536::setReg(reg_ptr_t regPtr, byte newSetting) {
  *==============================================================================================================*/
 
 void PCA9536::setPin(pin_t pin, reg_ptr_t regPtr, byte newSetting) {
-    setReg(regPtr, (getReg(regPtr) & ~(1 << pin)) | (newSetting & (1 << pin)));
+    byte newReg = getReg(regPtr);
+    bitWrite(newReg, pin, newSetting);
+    setReg(regPtr, newReg);
 }
 
 /*==============================================================================================================*
