@@ -205,8 +205,7 @@ void PCA9536::setReg(reg_ptr_t regPtr, byte newSetting) {
  *==============================================================================================================*/
 
 void PCA9536::setPin(pin_t pin, reg_ptr_t regPtr, byte newSetting) {
-    byte regData = getReg(regPtr);
-    setReg(regPtr, (regData & ~(1 << pin)) | (newSetting & (1 << pin)));
+    setReg(regPtr, (getReg(regPtr) & ~(1 << pin)) | (newSetting & (1 << pin)));
 //    byte newReg = getReg(regPtr);
 //    bitWrite(newReg, pin, newSetting);
 //    setReg(regPtr, newReg);
