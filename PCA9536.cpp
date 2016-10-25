@@ -64,7 +64,7 @@ byte PCA9536::ping() {
 }
 
 /*==============================================================================================================*
-    GET PIN MODE (0 = OUTPUT / 1 = INPUT)
+    GET MODE (0 = OUTPUT / 1 = INPUT)
  *==============================================================================================================*/
 
 byte PCA9536::getMode(pin_t pin) {
@@ -72,7 +72,7 @@ byte PCA9536::getMode(pin_t pin) {
 }
 
 /*==============================================================================================================*
-    GET PIN STATE (0 = LOW / 1 = HIGH)
+    GET STATE (0 = LOW / 1 = HIGH)
  *==============================================================================================================*/
 
 byte PCA9536::getState(pin_t pin) {
@@ -80,7 +80,7 @@ byte PCA9536::getState(pin_t pin) {
 }
 
 /*==============================================================================================================*
-    GET PIN POLARITY: INPUT PINS ONLY (0 = NON-INVERTED / 1 = INVERTED)
+    GET POLARITY: INPUT PINS ONLY (0 = NON-INVERTED / 1 = INVERTED)
  *==============================================================================================================*/
 
 byte PCA9536::getPolarity(pin_t pin) {
@@ -88,7 +88,7 @@ byte PCA9536::getPolarity(pin_t pin) {
 }
 
 /*==============================================================================================================*
-    SET PIN MODE
+    SET MODE
  *==============================================================================================================*/
 
 void PCA9536::setMode(pin_t pin, mode_t newMode) {                           // PARAMS: IO0 / IO1 / IO2 / IO3
@@ -96,7 +96,7 @@ void PCA9536::setMode(pin_t pin, mode_t newMode) {                           // 
 }
 
 /*==============================================================================================================*
-    SET ALL PINS MODE
+    SET MODE : ALL PINS
  *==============================================================================================================*/
 
 void PCA9536::setMode(mode_t newMode) {                                      // PARAMS: IO_INPUT / IO_OUTPUT
@@ -104,7 +104,7 @@ void PCA9536::setMode(mode_t newMode) {                                      // 
 }
 
 /*==============================================================================================================*
-    SET PIN STATE (OUTPUT PINS ONLY)
+    SET STATE (OUTPUT PINS ONLY)
  *==============================================================================================================*/
 
 void PCA9536::setState(pin_t pin, state_t newState) {                        // PARAMS: IO0 / IO1 / IO2 / IO3
@@ -112,7 +112,7 @@ void PCA9536::setState(pin_t pin, state_t newState) {                        // 
 }
 
 /*==============================================================================================================*
-    SET ALL PINS STATE (OUTPUT PINS ONLY)
+    SET STATE : ALL PINS (OUTPUT PINS ONLY)
  *==============================================================================================================*/
 
 void PCA9536::setState(state_t newState) {                                   // PARAMS: IO_LOW / IO_HIGH
@@ -120,7 +120,7 @@ void PCA9536::setState(state_t newState) {                                   // 
 }
 
 /*==============================================================================================================*
-    TOGGLE PIN STATE (OUTPUT PINS ONLY)
+    TOGGLE STATE (OUTPUT PINS ONLY)
  *==============================================================================================================*/
 
 void PCA9536::toggleState(pin_t pin) {
@@ -128,7 +128,7 @@ void PCA9536::toggleState(pin_t pin) {
 }
 
 /*==============================================================================================================*
-    TOGGLE ALL PINS STATE (OUTPUT PINS ONLY)
+    TOGGLE STATE : ALL PINS (OUTPUT PINS ONLY)
  *==============================================================================================================*/
 
 void PCA9536::toggleState() {
@@ -136,7 +136,7 @@ void PCA9536::toggleState() {
 }
 
 /*==============================================================================================================*
-    SET PIN POLARITY (INPUT PINS ONLY)
+    SET POLARITY (INPUT PINS ONLY)
  *==============================================================================================================*/
 
 void PCA9536::setPolarity(pin_t pin, polarity_t newPolarity) {          // PARAMS: IO0 / IO1 / IO2 / IO3
@@ -144,7 +144,7 @@ void PCA9536::setPolarity(pin_t pin, polarity_t newPolarity) {          // PARAM
 }
 
 /*==============================================================================================================*
-    SET ALL PINS POLARITY (INPUT PINS ONLY)
+    SET POLARITY : ALL PINS (INPUT PINS ONLY)
  *==============================================================================================================*/
 
 void PCA9536::setPolarity(polarity_t newPolarity) {                     // PARAMS: IO_NON_INVERTED / IO_INVERTED
@@ -206,9 +206,6 @@ void PCA9536::setReg(reg_ptr_t regPtr, byte newSetting) {
 
 void PCA9536::setPin(pin_t pin, reg_ptr_t regPtr, byte newSetting) {
     setReg(regPtr, (getReg(regPtr) & ~(1 << pin)) | (newSetting & (1 << pin)));
-//    byte newReg = getReg(regPtr);
-//    bitWrite(newReg, pin, newSetting);
-//    setReg(regPtr, newReg);
 }
 
 /*==============================================================================================================*
