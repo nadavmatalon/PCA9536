@@ -56,7 +56,7 @@ PCA9536::~PCA9536() {}
     PING (0 = SUCCESS / 1, 2... = ERROR CODE)
  *==============================================================================================================*/
 
-// See meaning of I2C error codes in the README
+// For meaning of I2C Error Codes see README
 
 byte PCA9536::ping() {
     Wire.beginTransmission(DEV_ADDR);
@@ -68,7 +68,7 @@ byte PCA9536::ping() {
  *==============================================================================================================*/
 
 byte PCA9536::getMode(pin_t pin) {
-    return bitRead(getData(REG_CONFIG), pin);
+    return getPin(pin, REG_CONFIG);
 }
 
 /*==============================================================================================================*
@@ -76,8 +76,7 @@ byte PCA9536::getMode(pin_t pin) {
  *==============================================================================================================*/
 
 byte PCA9536::getState(pin_t pin) {
-    byte state = (getMode(pin) ? getData(REG_INPUT) : getData(REG_OUTPUT));
-    return bitRead(state, pin);
+    return getPin(pin, getMode(pin) ? REG_INPUT : REG_OUTPUT);
 }
 
 /*==============================================================================================================*
@@ -85,7 +84,7 @@ byte PCA9536::getState(pin_t pin) {
  *==============================================================================================================*/
 
 byte PCA9536::getPolarity(pin_t pin) {
-    return bitRead(getData(REG_POLARITY), pin);
+    return getPin(pin, REG_POLARITY);
 }
 
 /*==============================================================================================================*
@@ -93,7 +92,7 @@ byte PCA9536::getPolarity(pin_t pin) {
  *==============================================================================================================*/
 
 void PCA9536::setMode(pin_t pin, mode_t newMode) {                           // PARAMS: IO0 / IO1 / IO2 / IO3
-    setPin(REG_CONFIG, newMode, ALL_INPUT);                                  //         IO_INPUT / IO_OUTPUT
+    setPin(pin, REG_CONFIG, newMode);                                        //         IO_INPUT / IO_OUTPUT
 }
 
 /*==============================================================================================================*
@@ -101,7 +100,7 @@ void PCA9536::setMode(pin_t pin, mode_t newMode) {                           // 
  *==============================================================================================================*/
 
 void PCA9536::setMode(mode_t newMode) {                                      // PARAMS: IO_INPUT / IO_OUTPUT
-    setData(REG_CONFIG, (newMode ? ALL_INPUT : ALL_OUTPUT));
+    setReg(REG_CONFIG, newMode ? ALL_INPUT : ALL_OUTPUT);
 }
 
 /*==============================================================================================================*
@@ -109,7 +108,7 @@ void PCA9536::setMode(mode_t newMode) {                                      // 
  *==============================================================================================================*/
 
 void PCA9536::setState(pin_t pin, state_t newState) {                        // PARAMS: IO0 / IO1 / IO2 / IO3
-    setPin(REG_OUTPUT, newState, ALL_HIGH);                                  //         IO_LOW / IO_HIGH
+    setPin(pin, REG_OUTPUT, newState);                                       //         IO_LOW / IO_HIGH
 }
 
 /*==============================================================================================================*
@@ -117,7 +116,23 @@ void PCA9536::setState(pin_t pin, state_t newState) {                        // 
  *==============================================================================================================*/
 
 void PCA9536::setState(state_t newState) {                                   // PARAMS: IO_LOW / IO_HIGH
-    setData(REG_OUTPUT, (newState ? ALL_HIGH : ALL_LOW));
+    setReg(REG_OUTPUT, newState ? ALL_HIGH : ALL_LOW);
+}
+
+/*==============================================================================================================*
+    TOGGLE PIN STATE (OUTPUT PINS ONLY)
+ *==============================================================================================================*/
+
+void PCA9536::toggleState(pin_t pin) {
+    setReg(REG_OUTPUT, getReg(REG_OUTPUT) ^ (1 << pin));
+}
+
+/*==============================================================================================================*
+    TOGGLE ALL PINS STATE (OUTPUT PINS ONLY)
+ *==============================================================================================================*/
+
+void PCA9536::toggleState() {
+    setReg(REG_OUTPUT, ~getReg(REG_OUTPUT));
 }
 
 /*==============================================================================================================*
@@ -125,7 +140,7 @@ void PCA9536::setState(state_t newState) {                                   // 
  *==============================================================================================================*/
 
 void PCA9536::setPolarity(pin_t pin, polarity_t newPolarity) {          // PARAMS: IO0 / IO1 / IO2 / IO3
-    setPin(REG_POLARITY, newPolarity, ALL_NON_INVERTED);                //         IO_NON_INVERTED / IO_INVERTED
+    setPin(pin, REG_POLARITY, newPolarity);           //         IO_NON_INVERTED / IO_INVERTED
 }
 
 /*==============================================================================================================*
@@ -133,7 +148,7 @@ void PCA9536::setPolarity(pin_t pin, polarity_t newPolarity) {          // PARAM
  *==============================================================================================================*/
 
 void PCA9536::setPolarity(polarity_t newPolarity) {                     // PARAMS: IO_NON_INVERTED / IO_INVERTED
-    setData(REG_POLARITY, (newPolarity ? ALL_INVERTED : ALL_NON_INVERTED));
+    setReg(REG_POLARITY, (newPolarity ? ALL_INVERTED : ALL_NON_INVERTED));
 }
 
 /*==============================================================================================================*
@@ -152,37 +167,49 @@ void PCA9536::reset() {
     GET REGISTER DATA
  *==============================================================================================================*/
 
-byte PCA9536::getData(reg_ptr_t regPtr) {
-    byte data = 0;
+byte PCA9536::getReg(reg_ptr_t regPtr) {
+    byte regData = 0;
     initCall(regPtr);
     endCall();
     if (_comBuffer == COM_SUCCESS) {
         Wire.requestFrom(DEV_ADDR, NUM_BYTES);
-        if (Wire.available() == NUM_BYTES) data = Wire.read();
+        if (Wire.available() == NUM_BYTES) regData = Wire.read();
         else {
             while (Wire.available()) Wire.read();
             _comBuffer = ping();
         }
     }
-    return data;
+    return regData;
+}
+
+/*==============================================================================================================*
+    GET PIN DATA
+ *==============================================================================================================*/
+
+byte PCA9536::getPin(pin_t pin, reg_ptr_t regPtr) {
+    return bitRead(getReg(regPtr), pin);
 }
 
 /*==============================================================================================================*
     SET REGISTER DATA
  *==============================================================================================================*/
 
-void PCA9536::setData(reg_ptr_t regPtr, byte newData) {
+void PCA9536::setReg(reg_ptr_t regPtr, byte newSetting) {
     initCall(regPtr);
-    Wire.write(newData);
+    Wire.write(newSetting);
     endCall();
 }
 
 /*==============================================================================================================*
-    SET PIN (MODE / STATE / POLARITY)
+    SET PIN DATA
  *==============================================================================================================*/
 
-void PCA9536::setPin(reg_ptr_t regPtr, byte newSetting, byte bitMask) {
-    setData(regPtr, ((getData(regPtr) & ~bitMask) | (newSetting & bitMask)));
+void PCA9536::setPin(pin_t pin, reg_ptr_t regPtr, byte newSetting) {
+    byte regData = getReg(regPtr);
+    setReg(regPtr, (regData & ~(1 << pin)) | (newSetting & (1 << pin)));
+//    byte newReg = getReg(regPtr);
+//    bitWrite(newReg, pin, newSetting);
+//    setReg(regPtr, newReg);
 }
 
 /*==============================================================================================================*

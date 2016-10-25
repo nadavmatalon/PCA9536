@@ -185,15 +185,18 @@ namespace Pca9536 {
             void setMode(mode_t newMode);
             void setState(pin_t pin, state_t newState);
             void setState(state_t newState);
+            void toggleState(pin_t pin);
+            void toggleState();
             void setPolarity(pin_t pin, polarity_t newPolarity);
             void setPolarity(polarity_t newPolarity);
             void reset();
             byte getComResult();
-        private:
+         private:
             byte _comBuffer;
-            byte getData(reg_ptr_t ptr);
-            void setData(reg_ptr_t ptr, byte newData);
-            void setPin(reg_ptr_t regPtr, byte newSetting, byte bitMask);
+            byte getReg(reg_ptr_t regPtr);
+            byte getPin(pin_t pin, reg_ptr_t regPtr);
+            void setReg(reg_ptr_t ptr, byte newSetting);
+            void setPin(pin_t pin, reg_ptr_t regPtr, byte newSetting);
             void initCall(reg_ptr_t regPtr);
             void endCall();
     };

@@ -22,6 +22,7 @@ getState	KEYWORD2
 getPolarity	KEYWORD2
 setMode	KEYWORD2
 setState	KEYWORD2
+toggleState	KEYWORD2
 setPolarity	KEYWORD2
 reset	KEYWORD2
 getComResult	KEYWORD2
