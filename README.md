@@ -203,7 +203,7 @@ Parameters:&nbsp;&nbsp;&nbsp;Name of an initialized PCA9536 instance
 Description:&nbsp;&nbsp;Returns printable string containing detailed information about the device's current settings   
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PString
 
-## RUNNING THE EXAMPLE SKETCH
+## RUNNING THE EXAMPLE SKETCHES
 
 1) Start the Arduino IDE and open the relevant example sketch
 1) Hook-up the PCA9536 to the Arduino as explained in the sketch's comments   
