@@ -15,18 +15,17 @@ The PCA9536 is a 4-Channel GPIO Expander with a hardware I2C interface.
 The device's 4 channels (i.e. I/O pins) may be controlled all at the same time or individually in terms of their:  
 \[1\] Mode (INPUT / OUTPUT), \[2\] State (for output pin mode only: HIGH / LOW), and \[3\] Polarity (for input pin mode only: NON-INVERTED INPUT / INVERTED INPUT). The State (LOW / HIGH) of pins in input mode may be read, whereas thoat of pins in output mode may be either read or written to.
 
-This library contains a complete driver for the PCA9536 exposing all the above functionality, as well as allowing uses to toggle the state of pins in input mode, and recieve verbose information re the device's current settings and/or I2C communication results.
+This library contains a complete driver for the PCA9536 exposing all the above functionality, as well as allowing uses to toggle the state of pins in input mode, and the option to recieve verbose information re the device's current settings and/or I2C communication results.
                                                                                                                     
 [PCA9536 DATASHEET](http://www.nxp.com/documents/data_sheet/PCA9536.pdf)
-
 
 ## REPOSITORY CONTENTS
 
 - **PCA9536.h** - Library Header file.
 - **PCA9536.cpp** - Library Compilation.
 - **/utility** 
-  - **PCA9536InfoStr.h** - Header file containing a functional extention of the library to include generating pritable information String (see Note #9 below).
-  - **PCA9536ComStr.h** - Header file containing a functional extention of the library to include generating a pritable I2C Communication Result String 
+  - **PCA9536InfoStr.h** - Header file containing a functional extention of the library to include generating pritable information String (see Note #4 below).
+  - **PCA9536ComStr.h** - Header file containing a functional extention of the library to include generating a pritable I2C Communication Result String (see Note #5 below).
   - **PCA9536_PString.h** - Header file for PString class (lighter alternative to String class) 
   - **PCA9536_PString.cpp** - Compilation file for PString class (lighter alternative to String class) 
 - **/examples**  
@@ -70,6 +69,18 @@ It is important to note that the PCA9536 uses an inverse value scheme for design
 
 All 4 channels of the PCA9536 have weak pull-up resistors attached (~100K). Hence, if a pin is left 'floating' (or unconnected), it will default to a HIGH state.
 
+3) __Constructor &amp; Destructor__
+
+As PCA9536 instances are initialized without parameters (recall that the single I2C address of the device is factory hardwired), the constructor has a slightly unconventional format in that it does not include the usual parentheses at the end. For concrete illustrations, see the example sketches bundled in this library.
+
+4) __Device Information String__
+
+It is possible to extend the PCA9536 Library to include a function for generating a pritable device information string showing all the relevant details about the devices current settings. As the additional functionality comes at the cost of increased memory footprint, it was implemented as an optional add-on rather than added directly to the core PCA9536 Library. See the [PCA9536_Info](https://github.com/nadavmatalon/PCA9536/blob/master/examples/PCA9536_Info/PCA9536_Info.ino) example sketch for detailed explanation and an actual usage demo.
+
+5) __Device I2C Communications String__
+
+It is also possible to extend the PCA9536 Library to include a function for generating a pritable I2C Communications string showing the result of each I2C transaction in a human-friendly way, something that may be useful, for example, during debugging sessions. As the additional functionality comes at the cost of increased memory footprint, it was implemented as an optional add-on rather than added directly to the core PCA9536 Library. See the [PCA9536_I2C_Status](https://github.com/nadavmatalon/PCA9536/blob/master/examples/PCA9536_I2C_Status/PCA9536_I2C_Status.ino) example sketch for detailed explanation and an actual usage demo.
+
 ## I2C ADDRESSES
 
 The PCA9536 has a single I2C address (factory hardwired):
@@ -92,7 +103,7 @@ Next, include the library at the top of the sketch as follows:
 At this point you can construct a new PCA9536 object(s) by using the following command (at the top of the sketch after the 'include' line):
 
 ```
-PCA9536 device_name();
+PCA9536 device_name;  // Notice that the constructor doesn't use parenthesis after device_name! (see Note #3 above)
 ```
 
 >__NOTE__: replace the '__device_name__' above with a name of your choice. As the PCA9536 comes with a single hardwired I2C address, initializations of the class instance is done automatically to that address.
@@ -174,7 +185,7 @@ __Destructor__
 If you want to destruct an instantiated PCA9536 object, you can use the following method to do so:  
 
 ```
-~PCA9536 device_name();
+~PCA9536 device_name;      // Notice that the deconstructor doesn't use parenthesis after device_name! (see Note #3 above)
 ```
 >__NOTE__: replace the '__device_name__' above with the name of your PCA9536 device.
 
