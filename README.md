@@ -71,7 +71,7 @@ All 4 channels of the PCA9536 have weak pull-up resistors attached (~100K). Henc
 
 3) __Constructor &amp; Destructor__
 
-As PCA9536 instances are initialized without parameters (recall that the single I2C address of the device is factory hardwired), the constructor has a slightly unconventional format in that it does not include the usual parentheses at the end. For concrete illustrations, see the example sketches bundled in this library.
+As PCA9536 instances are initialized without parameters (recall that the single I2C address of the device is factory hardwired), the constructor and destructor have a slightly unconventional format in that they do not include the usual parentheses at the end. For concrete illustrations, see the example sketches bundled in this library.
 
 4) __Device Information String__
 
