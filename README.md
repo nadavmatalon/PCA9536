@@ -50,15 +50,15 @@ This library contains a complete driver for the PCA9536 exposing all the above f
 
 ## HOOK-UP
 
-PIN 1 (IO0) - connect to device requiring digital I/O pin (or leave unconnected)
-PIN 2 (IO1) - connect to device requiring digital I/O pin (or leave unconnected)
-PIN 3 (IO2) - connect to device requiring digital I/O pin (or leave unconnected)
-PIN 4 (GND) - Connect to Arduino GND
-PIN 5 (IO3) - connect to device requiring digital I/O pin (or leave unconnected)
-PIN 6 (SCL) - Connect to Arduino Pin A5 with a 2K2 (400MHz) or 10K (100MHz) pull-up resistor
-PIN 7 (SDA) - Connect to Arduino Pin A4 with a 2K2 (400MHz) or 10K (100MHz) pull-up resistor
-PIN 8 (VCC) - Connect to Arduino 5V output
-DECOUPING   - Connect a 0.1uF Ceramic Capacitor between the PCA9536's VCC & GND pins
+PIN 1 (IO0) - connect to device requiring digital I/O pin (or leave unconnected)  
+PIN 2 (IO1) - connect to device requiring digital I/O pin (or leave unconnected)  
+PIN 3 (IO2) - connect to device requiring digital I/O pin (or leave unconnected)  
+PIN 4 (GND) - Connect to Arduino GND  
+PIN 5 (IO3) - connect to device requiring digital I/O pin (or leave unconnected)  
+PIN 6 (SCL) - Connect to Arduino Pin A5 with a 2K2 (400MHz) or 10K (100MHz) pull-up resistor  
+PIN 7 (SDA) - Connect to Arduino Pin A4 with a 2K2 (400MHz) or 10K (100MHz) pull-up resistor  
+PIN 8 (VCC) - Connect to Arduino 5V output  
+DECOUPING   - Connect a 0.1uF Ceramic Capacitor between the PCA9536's VCC & GND pins  
 
 ## GENERAL NOTES
 
