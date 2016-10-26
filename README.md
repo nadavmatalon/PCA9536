@@ -12,10 +12,10 @@
 
 The PCA9536 is a 4-Channel GPIO Expander with a hardware I2C interface.
 
-The PCA9536's 4 channels (i.e. I/O pins) can be controlled as a single unit or individually in terms of their Mode (INPUT /OUTPUT) and Polarity (NON-INVERTED INPUT / INVERTED INPUT). The pins' states (LOW / HIGH) can be read (in INPUT mode) or written (in OUTPUT mode).
+The device's 4 channels (i.e. I/O pins) may be controlled all at the same time or individually in terms of their: \[1\] Mode (INPUT / OUTPUT), \[2\] State (for output pin mode only: HIGH / LOW), and \[3\] Polarity (for input pin mode only: NON-INVERTED INPUT / INVERTED INPUT). The State (LOW / HIGH) of pins in input mode may be read, whereas those of pins in output mode may be either read or written to.
 
-This library contains a complete driver for the PCA9536 exposing all the above functionality.
-
+This library contains a complete driver for the PCA9536 exposing all the above functionality, as well as allowing uses to toggle the state of pins in input mode, and recieve verbose information re the device's current settings and/or I2C communication results.
+                                                                                                                    
 [PCA9536 DATASHEET](http://www.nxp.com/documents/data_sheet/PCA9536.pdf)
 
 
