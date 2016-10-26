@@ -50,15 +50,15 @@ This library contains a complete driver for the PCA9536 exposing all the above f
 
 ## HOOK-UP
 
-* __PIN 1 (IO0)__ - (Optional) Connect to the Arduino's Digital Pin 0
-* __PIN 2 (IO1)__ - (Optional) Connect to the Arduino's Digital Pin 1
-* __PIN 3 (IO2)__ - (Optional) Connect to the Arduino's Digital Pin 2
-* __PIN 4 (GND)__ - Connect GND to the Arduino's GND
-* __PIN 5 (IO3)__ - (Optional) Connect to the Arduino's Digital Pin 3
-* __PIN 6 (SCL)__ - Connect SCL to the Arduino's PIN A5 with a 2K2 pull-up resistor
-* __PIN 7 (SDA)__ - Connect SDA to the Arduino's PIN A4 with a 2K2 pull-up resistor
-* __PIN 8 (VCC)__ - Connect VCC to the Arduino's 5V output
-* __DECOUPING__: Connect a 0.1uF Ceramic Capacitor between the PCA9536's VCC &amp GND PINS
+PIN 1 (IO0) - connect to device requiring digital I/O pin (or leave unconnected)
+PIN 2 (IO1) - connect to device requiring digital I/O pin (or leave unconnected)
+PIN 3 (IO2) - connect to device requiring digital I/O pin (or leave unconnected)
+PIN 4 (GND) - Connect to Arduino GND
+PIN 5 (IO3) - connect to device requiring digital I/O pin (or leave unconnected)
+PIN 6 (SCL) - Connect to Arduino Pin A5 with a 2K2 (400MHz) or 10K (100MHz) pull-up resistor
+PIN 7 (SDA) - Connect to Arduino Pin A4 with a 2K2 (400MHz) or 10K (100MHz) pull-up resistor
+PIN 8 (VCC) - Connect to Arduino 5V output
+DECOUPING   - Connect a 0.1uF Ceramic Capacitor between the PCA9536's VCC & GND pins
 
 ## GENERAL NOTES
 
@@ -68,7 +68,7 @@ It is important to note that the PCA9536 uses an inverse value scheme for design
 
 2) __PULL-UP RESISTORS__
 
-All 4 channels of the PCA0536 have weak pull-up resistors attached (~100K). Hence, if a pin is left 'floating' (or unconnected), it will default to a HIGH state.
+All 4 channels of the PCA9536 have weak pull-up resistors attached (~100K). Hence, if a pin is left 'floating' (or unconnected), it will default to a HIGH state.
 
 ## I2C ADDRESSES
 
@@ -135,18 +135,23 @@ Description:&nbsp;&nbsp;Gets the selected INPUT pin's current polarity (0 = NON-
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte  
 
 __setMode();__  
-Parameters:&nbsp;&nbsp;&nbsp;To set a single pin: IO0 / IO1 / IO2 / IO3, IO_INPUT / IO_OUTPUT | To set all pins at once: IO_INPUT / IO_OUTPUT  
-Description:&nbsp;&nbsp;Sets the selected pin's/all pins' mode (INPUT / OUTPUT).  
+Parameters:&nbsp;&nbsp;&nbsp;To set a single pin: IO0 / IO1 / IO2 / IO3, IO_INPUT [default] / IO_OUTPUT | To set all pins at once: IO_INPUT [default] / IO_OUTPUT  
+Description:&nbsp;&nbsp;Sets the selected pin/s mode (INPUT / OUTPUT).  
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 __setState();__  
-Parameters:&nbsp;&nbsp;&nbsp;To set a single OUTPUT pin: IO0 / IO1 / IO2 / IO3, IO_LOW / IO_HIGH | To set all OUTPUT pins at once: IO_LOW / IO_HIGH
-Description:&nbsp;&nbsp;Sets the selected pin's/all pins' state (LOW / HIGH). Note that this is relevant only for OUTPUT pins.   
+Parameters:&nbsp;&nbsp;&nbsp;To set a single OUTPUT pin: IO0 / IO1 / IO2 / IO3, IO_LOW / IO_HIGH [default] | To set all OUTPUT pins at once: IO_LOW / IO_HIGH [default]
+Description:&nbsp;&nbsp;Sets the selected pin/s state (LOW / HIGH). Note that this is relevant only for OUTPUT pins.   
+Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
+
+__toggleState();__  
+Parameters:&nbsp;&nbsp;&nbsp;To toggle the state of a single OUTPUT pin: IO0 / IO1 / IO2 / IO3 | To toggle all OUTPUT pins at once: None
+Description:&nbsp;&nbsp;Toggles the selected pin/s state (LOW / HIGH). Note that this is relevant only for OUTPUT pins.   
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None
 
 __setPolarity();__  
-Parameters:&nbsp;&nbsp;&nbsp;To set a single INPUT pin: IO0 / IO1 / IO2 / IO3, IO_NON_INVERTED / IO_INVERTED | To set all INPUT pins at once: IO_NON_INVERTED / IO_INVERTED  
-Description:&nbsp;&nbsp;Sets the selected pin's/all pins' polarity (NON-INVERTED / INVERTED). Note that this is relevant only for INPUT pins.  
+Parameters:&nbsp;&nbsp;&nbsp;To set a single INPUT pin: IO0 / IO1 / IO2 / IO3, IO_NON_INVERTED [default] / IO_INVERTED | To set all INPUT pins at once: IO_NON_INVERTED [default] / IO_INVERTED  
+Description:&nbsp;&nbsp;Sets the selected pin/s polarity (NON-INVERTED / INVERTED). Note that this is relevant only for INPUT pins.  
 Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None  
 
 __reset();__  

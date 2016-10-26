@@ -5,9 +5,19 @@
   INTRODUCTION
   ------------ 
 
-  This sketch offers a complete usage illustration for the PCA9536.
+  The PCA9536 is a 4-Channel GPIO Expander with a hardware I2C interface.
 
-  INPORTANT: The current library depends on the Arduino IDE's native 'Wire' library for I2C communication between the Arduino (Master) and the PCA9536 (Slave).
+  The device's 4 channels (i.e. I/O pins) may be controlled all at the same time or individually in terms
+  of their: [1] Mode (INPUT / OUTPUT), [2] State (for output pin mode only: HIGH / LOW), and [3] Polarity
+  (for input pin mode only: NON-INVERTED INPUT / INVERTED INPUT). The State (LOW / HIGH) of pins in input
+  mode may be read, whereas thoat of pins in output mode may be either read or written to.
+
+  This library contains a complete driver for the PCA9536 exposing all the above functionality, as well as
+  allowing uses to toggle the state of pins in input mode, and recieve verbose information re the device's
+  current settings and/or I2C communication results.
+
+  INPORTANT: The current library depends on the Arduino IDE's native 'Wire' library for I2C communication
+             between the Arduino (Master) and the PCA9536 (Slave).
 
   WIRING DIAGRAM
   --------------
