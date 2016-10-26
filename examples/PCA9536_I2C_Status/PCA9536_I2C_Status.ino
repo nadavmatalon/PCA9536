@@ -1,17 +1,18 @@
 /* 
-  PCA9536 LIBRARY - BASIC DEVICE TESTING EXAMPLE
-  ----------------------------------------------
-  
+  PCA9536 LIBRARY - I2C COMMUNICATION STATUS STRING EXAMPLE
+  ---------------------------------------------------------
+
   INTRODUCTION
   ------------
-  This sketch offers a quick & simple code for testing that the PCA9536 is hooked-up and operating correctly.
+  This sketch presents a minimal example of extending the PCA9536 Library to include an additional function
+  for generating a printable I2C Communications Status string which may be useful, for example, during debugging sessions.
 
-  The sketch begins by searching for the PCA9536 on the I2C Bus. I then moves on to get the various Register data available from the device
-  (Ambient Temperature, Limit, and Hysteresis). And finally, it verifies that the Alert functionality is working as it should (at least, 
-  in default mode).
+  As can be seen in the sketch below, implementation of this extended functionality only requires adding a single 'include'
+  to the code, namely that of the relevant *.h file (PCA9536ComStr.h).
   
-  INPORTANT: The current library depends on the Arduino IDE's native 'Wire' library for I2C communication between the Arduino (Master) and the PCA9536 (Slave).
-
+  Note that this functional extension does come at the cost of an increased memory usage, and therefore it seemed preferable to maintain it 
+  as an optional add-on rather than include it in the core PCA9536 Library itself.
+  
   WIRING DIAGRAM
   --------------
 
@@ -28,7 +29,7 @@
 
   This hookup can be used with the following sketch:
 
-  PIN 1 (IO0) - Connect LED (anode via appropriate series resistor to Arduino 5V output & cathode to PCA9536 Pin 1)
+  PIN 1 (IO0) - Leave unconnected for the purpose of this sketch
   PIN 2 (IO1) - Leave unconnected for the purpose of this sketch
   PIN 3 (IO2) - Leave unconnected for the purpose of this sketch
   PIN 4 (GND) - Connect to Arduino GND
@@ -55,10 +56,9 @@
 
   LICENSE
   -------
-
   The MIT License (MIT)
   Copyright (c) 2016 Nadav Matalon
-
+  
   Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
   documentation files (the "Software"), to deal in the Software without restriction, including without
   limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
@@ -76,6 +76,7 @@
 */
 
 #include "PCA9536.h"
+#include "utility/PCA9536ComStr.h"
 
 PCA9536 pca9536;
 
@@ -83,30 +84,13 @@ void setup() {
     Serial.begin(9600);
     Wire.begin();
     while(!Serial);
-    printDivider();
-    Serial.print(F("\nPCA9536 DEVICE TESTING\n"));
-    printDivider();
-    Serial.print(F("\nINITIATING SERIAL COMMUNICATION\n"));  
-    Serial.print(F("\nSerial Port is "));
-    Serial.print(Serial ? "Open\n" : "Could not be opened\n"); 
-    printDivider();
-    pca9536.reset();
-    delay(50);
+    Serial.print(F("\nPCA9536 GPIO I2C EXPANDER"));
+    Serial.print(F("\n-------------------------\n"));
+    Serial.print(F("\nSENDING COMMAND TO DEVICE..."));
     pca9536.setMode(IO0, IO_OUTPUT);
-    delay(50);
-    Serial.print(F("\nSEARCHING FOR DEVICE\n\nDevice "));
-    pca9536.ping() ? Serial.print(F("Not Found\n")) : Serial.print(F("Found!\n"));
-    printDivider();
-    delay(50);
-    Serial.print(F("\nBLINKING LED ON PIN IO0\n"));
-    printDivider();
+    Serial.print(F("DONE\n\nI2C STATUS:   ")); 
+    Serial.print(PCA9536ComStr(pca9536));
+    Serial.print(F("\n\n"));
 }
 
-void loop() {
-    pca9536.toggleState(IO0);
-    delay(500);
-}
-
-void printDivider() {
-    Serial.print(F("\n-----------------------------------------\n"));
-}
+void loop() {}

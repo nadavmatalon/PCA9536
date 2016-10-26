@@ -128,6 +128,7 @@ __asm volatile ("nop");
 
 #include <Arduino.h>
 #include "Wire.h"
+#include "utility/PCA9536_PString.h"
 
 namespace Pca9536 {
 
@@ -196,6 +197,8 @@ namespace Pca9536 {
             void setPin(pin_t pin, reg_ptr_t regPtr, byte newSetting);
             void initCall(reg_ptr_t regPtr);
             void endCall();
+            friend PCA9536_PString PCA9536ComStr(const PCA9536&);
+            friend PCA9536_PString PCA9536InfoStr(const PCA9536&);
     };
 }
 

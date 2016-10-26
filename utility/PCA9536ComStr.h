@@ -79,7 +79,6 @@ namespace Pca9536 {
         snprintf_P(devComBuffer, COM_BUFFER_SIZE, ptr, comCodeResult);
         return comStr;
     }
-
 }
 
 using namespace Pca9536;
