@@ -148,7 +148,11 @@ void PCA9536::setPolarity(pin_t pin, polarity_t newPolarity) {          // PARAM
  *==============================================================================================================*/
 
 void PCA9536::setPolarity(polarity_t newPolarity) {                     // PARAMS: IO_NON_INVERTED / IO_INVERTED
-    setReg(REG_POLARITY, (newPolarity ? ALL_INVERTED : ALL_NON_INVERTED));
+    byte polarityVals, polarityMask, polarityNew;
+    polarityVals = getReg(REG_POLARITY);
+    polarityMask = getReg(REG_CONFIG);
+    polarityNew  = newPolarity ? ALL_INVERTED : ALL_NON_INVERTED;
+    setReg(REG_POLARITY, (polarityVals & ~polarityMask) | (polarityNew & polarityMask));
 }
 
 /*==============================================================================================================*

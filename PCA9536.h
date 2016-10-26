@@ -135,7 +135,7 @@ namespace Pca9536 {
     const byte NUM_BYTES        = 0x01;
     const byte ALL_INPUT        = 0xFF;
     const byte ALL_OUTPUT       = 0x00;
-    const byte ALL_LOW          = 0xFF;
+    const byte ALL_LOW          = 0x00;
     const byte ALL_HIGH         = 0xFF;
     const byte ALL_NON_INVERTED = 0x00;
     const byte ALL_INVERTED     = 0xFF;
