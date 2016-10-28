@@ -105,7 +105,7 @@ Next, include the library at the top of the sketch as follows:
 #include "PCA9536.h"
 ```
 
-At this point you can construct a new PCA9536 object(s) by using the following command (at the top of the sketch after the 'include' line):
+At this point you can construct a new PCA9536 instance(s) by using the following command (place at the top of the sketch after the 'include' line):
 
 ```
 PCA9536 device_name;  // Notice that the constructor doesn't use parenthesis after device_name! (see Note #3 above)
@@ -120,7 +120,7 @@ Next, make sure to inlude an instruction for initializing the I2C Bus for the [W
 ```
 void setup() {
     Wire.begin();
-// ...other setup code...
+    // ...other setup code...
 }
 ```
 
