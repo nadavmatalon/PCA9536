@@ -1,5 +1,6 @@
 {
 		"name": "PCA9536",
+	  "version": "1.0.0",
 		"frameworks": "AVR",
 		"keywords": "PCA9536, GPIO, EXPANDER, EXTENDER, I2C, 4-BIT",
 		"description": "PCA9536 Driver (4-Channel GPIO I2C Expander)",

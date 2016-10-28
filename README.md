@@ -24,8 +24,8 @@ This library contains a complete driver for the PCA9536 exposing all the above f
 - **PCA9536.h** - Library Header file.
 - **PCA9536.cpp** - Library Compilation.
 - **/utility** 
-  - **PCA9536InfoStr.h** - Header file containing a functional extention of the library to include generating pritable information String (see Note #4 below).
-  - **PCA9536ComStr.h** - Header file containing a functional extention of the library to include generating a pritable I2C Communication Result String (see Note #5 below).
+  - **PCA9536InfoStr.h** - Header file containing a functional extention of the library to include generating pritable information String (see Note #5 below).
+  - **PCA9536ComStr.h** - Header file containing a functional extention of the library to include generating a pritable I2C Communication Result String (see Note #6 below).
   - **PCA9536_PString.h** - Header file for PString class (lighter alternative to String class) 
   - **PCA9536_PString.cpp** - Compilation file for PString class (lighter alternative to String class) 
 - **/examples**  
@@ -61,27 +61,31 @@ DECOUPING   - Connect a 0.1uF Ceramic Capacitor between the PCA9536's VCC & GND 
 
 ## GENERAL NOTES
 
-1) __INPUT &amp; OUTPUT REGISTER VALUES__
+1) __I2C Communications Library Dependency__
+
+This library depends on the Arduino IDE's native '[Wire](https://github.com/arduino/Arduino/tree/master/hardware/arduino/avr/libraries/Wire)' library for I2C communication between the Arduino (Master) and the PCA9536 (Slave). 
+
+2) __INPUT &amp; OUTPUT REGISTER VALUES__
 
 It is important to note that the PCA9536 uses an inverse value scheme for designating INPUT and OUTPUT modes than that of the Arduino. In the Arduino environment, INPUT is designated by 0 and OUTPUT by 1, whereas the PCA9536 has INPUT as 1 and OUTPUT as 0.
 
-2) __PULL-UP RESISTORS__
+3) __PULL-UP RESISTORS__
 
 All 4 channels of the PCA9536 have weak pull-up resistors attached (~100K). Hence, if a pin is left 'floating' (or unconnected), it will default to a HIGH state.
 
-3) __Constructor &amp; Destructor__
+4) __Constructor &amp; Destructor__
 
 As PCA9536 instances are initialized without parameters (recall that the single I2C address of the device is factory hardwired), the constructor and destructor have a slightly unconventional format in that they do not include the usual parentheses at the end. For concrete illustrations, see the example sketches bundled in this library.
 
-4) __Device Information String__
+5) __Device Information String__
 
 It is possible to extend the PCA9536 Library to include a function for generating a pritable device information string showing all the relevant details about the devices current settings. As the additional functionality comes at the cost of increased memory footprint, it was implemented as an optional add-on rather than added directly to the core PCA9536 Library. See the [PCA9536_Info](https://github.com/nadavmatalon/PCA9536/blob/master/examples/PCA9536_Info/PCA9536_Info.ino) example sketch for detailed explanation and an actual usage demo.
 
-5) __Device I2C Communications String__
+6) __Device I2C Communications String__
 
 It is also possible to extend the PCA9536 Library to include a function for generating a pritable I2C Communications string showing the result of each I2C transaction in a human-friendly way, something that may be useful, for example, during debugging sessions. As the additional functionality comes at the cost of increased memory footprint, it was implemented as an optional add-on rather than added directly to the core PCA9536 Library. See the [PCA9536_I2C_Status](https://github.com/nadavmatalon/PCA9536/blob/master/examples/PCA9536_I2C_Status/PCA9536_I2C_Status.ino) example sketch for detailed explanation and an actual usage demo.
 
-## I2C ADDRESSES
+## I2C ADDRESS
 
 The PCA9536 has a single I2C address (factory hardwired):
 
@@ -92,7 +96,8 @@ The PCA9536 has a single I2C address (factory hardwired):
 
 ## LIBRARY INSTALLATION & SETUP
 
-Begin by installing the library either by using the Arduino IDE's Installation Wizard (Arduino Version >1.5) or simply download the library's ZIP folder from GITHUB, extract it, and copy the extraxcted folder to your Arduino 'libraries' folder.
+Begin by installing the library either by using the Arduino IDE's Installation Wizard (Arduino Version >1.5) or simply by directly downloading the library's ZIP folder  from Github, extracting it, and copying the extraxcted folder into your Arduino '/libraries' folder (don't forget to re-start the Arduino IDE after coping the folder so that the new library will show up in the list of installed libraries).
+
 
 Next, include the library at the top of the sketch as follows:
 
@@ -106,12 +111,22 @@ At this point you can construct a new PCA9536 object(s) by using the following c
 PCA9536 device_name;  // Notice that the constructor doesn't use parenthesis after device_name! (see Note #3 above)
 ```
 
->__NOTE__: replace the '__device_name__' above with a name of your choice. As the PCA9536 comes with a single hardwired I2C address, initializations of the class instance is done automatically to that address.
+>Replace '__device_name__' above with a name of your choice. As the PCA9536 comes with a single hardwired I2C address, initializations of the class instance is done automatically to that address.
 
+Next, make sure to inlude an instruction for initializing the I2C Bus for the [Wire Library](https://github.com/arduino/Arduino/tree/master/hardware/arduino/avr/libraries/Wire), as follows:
+
+(There's no need to include the Wire Library at the top of the sketch as it's already included by the PCA9536 Library)
+
+```
+void setup() {
+    Wire.begin();
+// ...other setup code...
+}
+```
 
 ## LIBRARY FUNCTIONS
 
-With the library installed & included in the sketch, and an PCA9536 object initiallized, the following functions are available (see the usage example sketch for a detailed implementation):
+With the library installed & included in the sketch, and an PCA9536 instance created, the following functions are available (see the usage example sketch for a detailed implementation):
 
 __Note About Methods' Return Values:__  
 All 'get' methods return some sort of value (e.g. temp reading, hysteresis setting, etc.), while all 'set' methods return nothing. Nevertheless, ALL methods implicitly update the library's __I2C _comBuffer__ (=communication buffer) after each I2C transmission. The reason for this functional design is to maintain structural coherance between the 'get' and 'set' methods. As 'get' methods cannot return both the desired value and the I2C transmission's result simultaniously. Consequently, if the relevant value hasn't been obtained by a particular 'get' method, the user can simply check the content of the _comBuffer to see what error occured. Similarly, it is possible to check if a particular setting has been successfully applied via a 'set' method either by preforming the corresponding 'get' method - e.g. getHystC() after using setHystC() - or by checking the content of the _comBuffer (0 indicates a successful transmission, 1-6 indicate an error as listed below). 
@@ -206,7 +221,7 @@ Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PString
 ## RUNNING THE EXAMPLE SKETCHES
 
 1) Start the Arduino IDE and open the relevant example sketch
-1) Hook-up the PCA9536 to the Arduino as explained in the sketch's comments   
+1) Hook-up the PCA9536 to the Arduino as explained in the sketch's notes   
 2) Upload the relevant example sketch to the Arduino
 3) Open the Serial Communications Window (make sure the baud-rate is set to 9600 or change it in the sketch to match your Serial Port's buad-rate).  
 
