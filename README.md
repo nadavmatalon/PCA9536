@@ -222,7 +222,7 @@ Returns:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PString
 
 1) Start the Arduino IDE and open the relevant example sketch  
 2) Hook-up the PCA9536 to the Arduino as explained in the sketch's notes  
-3) Upload the relevant example sketch to the Arduino  
+3) Upload the sketch to the Arduino  
 4) Open the Serial Communications Window (make sure the baud-rate is set to 9600 or change it in the sketch to match your Serial Port's buad-rate)  
 
 ## BUG REPORTS
