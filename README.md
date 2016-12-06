@@ -16,8 +16,10 @@ The device's 4 channels (i.e. I/O pins) may be controlled all at the same time o
 \[1\] Mode (INPUT / OUTPUT), \[2\] State (for output pin mode only: HIGH / LOW), and \[3\] Polarity (for input pin mode only: NON-INVERTED INPUT / INVERTED INPUT). The State (LOW / HIGH) of pins in input mode may be read, whereas thoat of pins in output mode may be either read or written to.
 
 This library contains a complete driver for the PCA9536 exposing all the above functionality, as well as allowing uses to toggle the state of pins in input mode, and the option to recieve verbose information re the device's current settings and/or I2C communication results.
-                                                                                                                    
-[PCA9536 DATASHEET](http://www.nxp.com/documents/data_sheet/PCA9536.pdf)
+
+<img src="extras/images/pca9536_pinout.png" alt="PCA9536 PINOUT" width="350" height="240">
+
+Source: [PCA9536 DATASHEET](http://www.nxp.com/documents/data_sheet/PCA9536.pdf)
 
 ## REPOSITORY CONTENTS
 
@@ -42,6 +44,8 @@ This library contains a complete driver for the PCA9536 exposing all the above f
   - **/eagle**
     - **PCA9536.sch** - Schematic file for the PCA9536 breakout board.
     - **PCA9536.brd** - Board layout file for the PCA9536 breakout board.
+  - **/images**
+    - **pca9536_pinout.png** - Pinout image of the PCA9536.
 - **keywords.txt** - Keywords for this library which will be highlighted in sketches within the Arduino IDE. 
 - **library.properties** - General library properties for the Arduino's IDE (>1.5) Library Package Manager.
 - **README.md** - The readme file for this library.
