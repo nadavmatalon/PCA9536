@@ -7,6 +7,7 @@
     PCA9536 Driver (4-Channel GPIO I2C Expander)
 
     Ver. 1.0.0 - First release (24.10.16)
+    Ver. 1.0.1 - Removed AVR architecture only (not needed)
 
  *===============================================================================================================*
     INTRODUCTION
@@ -121,10 +122,6 @@ __asm volatile ("nop");
 
 #ifndef PCA9536_h
 #define PCA9536_h
-
-#if !defined(ARDUINO_ARCH_AVR)
-#error “The PCA9536 library only supports AVR processors.”
-#endif
 
 #include <Arduino.h>
 #include "Wire.h"
